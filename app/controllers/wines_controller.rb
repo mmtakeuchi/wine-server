@@ -1,5 +1,7 @@
 class WinesController < ApplicationController
   before_action :set_wine, only: [:show, :update, :destroy]
+  before_action :authorized_user?
+  before_action :current_user
 
   # GET /wines
   def index
