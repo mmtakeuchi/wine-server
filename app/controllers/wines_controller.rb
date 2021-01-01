@@ -18,6 +18,7 @@ class WinesController < ApplicationController
   # POST /wines
   def create
     @wine = Wine.new(wine_params)
+    byebug
 
     if @wine.save
       render json: @wine, status: :created, location: @wine
@@ -48,6 +49,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.fetch(:wine, {})
+      params.require(:wine).permit(:brand, :nose, :taste)
     end
 end
