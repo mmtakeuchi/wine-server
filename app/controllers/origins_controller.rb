@@ -10,7 +10,7 @@ class OriginsController < ApplicationController
 
   # GET /origins/1
   def show
-    render json: @origin
+    render json: @origin, :include => :wines
   end
 
   # POST /origins
