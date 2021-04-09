@@ -10,7 +10,7 @@ class VarietalsController < ApplicationController
 
   # GET /varietals/1
   def show
-    render json: @varietal
+    render json: @varietal, :include => :wines
   end
 
   # POST /varietals

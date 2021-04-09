@@ -12,13 +12,17 @@ class WinesController < ApplicationController
 
   # GET /wines/1
   def show
-    render json: @wine
+    # render json: @wine, :include => {:varietal => {only: [:brand]}, :origin }
+    render json: @wine.to_json(
+        :include => {
+          :varietal => {only: [:name]}, 
+          :origin => {only: [:region]}
+        })
   end
 
   # POST /wines
   def create
     @wine = Wine.new(wine_params)
-    byebug
 
     if @wine.save
       render json: @wine, status: :created, location: @wine
@@ -49,6 +53,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:brand, :nose, :taste)
+      params.require(:wine).permit(:brand, :nose, :taste, :varietal_id, :origin_id)
     end
 end
