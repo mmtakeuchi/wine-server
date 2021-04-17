@@ -5,7 +5,7 @@ class OriginsController < ApplicationController
   def index
     @origins = Origin.all
 
-    render json: @origins
+    render json: @origins, :include => :wines
   end
 
   # GET /origins/1

@@ -1,18 +1,24 @@
 class WinesController < ApplicationController
-  before_action :set_wine, only: [:show, :update, :destroy]
   before_action :authorized_user?
   before_action :current_user
+  before_action :set_wine, only: [:show, :update, :destroy]
 
   # GET /wines
-  def index
+  def index 
     @wines = Wine.all
+    puts @wines
+    puts current_user
 
-    render json: @wines
+    render json: @wines.to_json(
+        :include => {
+          :varietal => {only: [:name]}, 
+          :origin => {only: [:region]},
+        })
   end
 
   # GET /wines/1
   def show
-    # render json: @wine, :include => {:varietal => {only: [:brand]}, :origin }
+    
     render json: @wine.to_json(
         :include => {
           :varietal => {only: [:name]}, 
@@ -34,7 +40,11 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1
   def update
     if @wine.update(wine_params)
-      render json: @wine
+      render json: @wine.to_json(
+        :include => {
+          :varietal => {only: [:name]}, 
+          :origin => {only: [:region]}
+        })
     else
       render json: @wine.errors, status: :unprocessable_entity
     end
@@ -53,6 +63,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:brand, :nose, :taste, :varietal_id, :origin_id)
+      params.require(:wine).permit(:brand, :nose, :taste, :varietal_id, :origin_id, :user_id)
     end
 end

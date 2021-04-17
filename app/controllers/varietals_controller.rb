@@ -5,7 +5,7 @@ class VarietalsController < ApplicationController
   def index
     @varietals = Varietal.all
 
-    render json: @varietals
+    render json: @varietals, :include => :wines
   end
 
   # GET /varietals/1

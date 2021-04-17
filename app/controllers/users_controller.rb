@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        
         if @user
             render json: {
             user: @user
@@ -47,7 +48,7 @@ class UsersController < ApplicationController
     private
         
     def user_params
-        params.require(:user).permit(:username, :email, :password, :password_confirmation)
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
     
 end
