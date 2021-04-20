@@ -34,6 +34,6 @@ module WineServer
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
-    config.api_only = false
+    config.api_only = true
   end
 end
