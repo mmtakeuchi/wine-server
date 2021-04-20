@@ -1,13 +1,11 @@
 class WinesController < ApplicationController
+  before_action :current_user
   before_action :set_wine, only: [:show, :update, :destroy]
 
   # GET /wines
   def index 
     # @wines = Wine.all
     @wines = Wine.where(user: current_user)
-
-    puts @current_user
-    
 
     render json: @wines.to_json(
         :include => {
