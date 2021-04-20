@@ -19,7 +19,7 @@ class UsersController < ApplicationController
         
         if @user
             render json: {
-            user: @user
+            user: @user, include: {wines: @user.wines}
         }
         else
             render json: {
