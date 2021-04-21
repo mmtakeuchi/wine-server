@@ -6,6 +6,7 @@ class WinesController < ApplicationController
   def index 
     # @wines = Wine.all
     @wines = Wine.where(user: current_user)
+    puts current_user
 
     render json: @wines.to_json(
         :include => {

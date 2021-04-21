@@ -4,6 +4,7 @@ class CreateWines < ActiveRecord::Migration[6.1]
       t.string :brand
       t.string :nose
       t.string :taste
+      t.integer :user_id
       
       t.timestamps
     end

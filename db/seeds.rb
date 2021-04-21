@@ -77,5 +77,6 @@ other = Origin.create({region: 'Other'})
 
 a_tester = User.create({username: 'test', password: 'test'})
 b_tester = User.create({username: 'quiz', password: 'quiz'})
+
 daou = Wine.create({brand: 'Daou', nose: 'cherry', taste: 'cherry', varietal_id: 1, origin_id: 1, user_id: 1})
 chandon = Wine.create({brand: 'Chandon', nose: 'apple', taste: 'pear', varietal_id: 47, origin_id: 1, user_id: 2})

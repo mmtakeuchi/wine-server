@@ -18,7 +18,9 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         
         if @user
-            render json: @user, include: {wines: @user.wines }
+            render json: {
+            user: @user
+        }
         else
             render json: {
             status: 500,
