@@ -1,16 +1,18 @@
 class VarietalsController < ApplicationController
+  before_action :authorized_user?
+  before_action :current_user
   before_action :set_varietal, only: [:show, :update, :destroy]
 
   # GET /varietals
   def index
     @varietals = Varietal.all
 
-    render json: @varietals, :include => :wines
+    render json: @varietals
   end
 
   # GET /varietals/1
   def show
-    render json: @varietal, :include => :wines
+    render json: @varietal
   end
 
   # POST /varietals
