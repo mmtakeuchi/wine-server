@@ -6,6 +6,7 @@ class WinesController < ApplicationController
   # GET /wines
   def index 
     # @wines = Wine.all
+    puts current_user.inspect
     @wines = current_user.wines
 
     if @wines
