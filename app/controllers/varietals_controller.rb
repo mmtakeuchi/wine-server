@@ -7,12 +7,12 @@ class VarietalsController < ApplicationController
   def index
     @varietals = Varietal.all
 
-    render json: @varietals
+    render json: @varietals, :include => :wines
   end
 
   # GET /varietals/1
   def show
-    render json: @varietal
+    render json: @varietal, :include => :wines
   end
 
   # POST /varietals

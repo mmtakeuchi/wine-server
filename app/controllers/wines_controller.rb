@@ -7,8 +7,6 @@ class WinesController < ApplicationController
   def index 
     # @wines = Wine.all
     @wines = current_user.wines
-    puts @wines
-    puts current_user
 
     render json: @wines.to_json(
         :include => {
@@ -41,11 +39,7 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1
   def update
     if @wine.update(wine_params)
-      render json: @wine.to_json(
-        :include => {
-          :varietal => {only: [:name]}, 
-          :origin => {only: [:region]}
-        })
+      render json: @wine
     else
       render json: @wine.errors, status: :unprocessable_entity
     end
