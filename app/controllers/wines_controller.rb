@@ -8,11 +8,15 @@ class WinesController < ApplicationController
     # @wines = Wine.all
     @wines = current_user.wines
 
-    render json: @wines.to_json(
-        :include => {
-          :varietal => {only: [:name]}, 
-          :origin => {only: [:region]},
-        })
+    if @wines
+      render json: @wines.to_json(
+          :include => {
+            :varietal => {only: [:name]}, 
+            :origin => {only: [:region]},
+          })
+    else
+      render json: @wines.errors.full_messages
+    end
   end
 
   # GET /wines/1
