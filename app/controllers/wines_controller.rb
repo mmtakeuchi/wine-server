@@ -5,9 +5,9 @@ class WinesController < ApplicationController
 
   # GET /wines
   def index 
-    # @wines = Wine.all
-    puts current_user.inspect
-    @wines = current_user.wines
+    @wines = Wine.all
+    # @wines = current_user.wines
+    puts current_user
 
     if @wines
       render json: @wines.to_json(
