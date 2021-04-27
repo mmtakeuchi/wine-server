@@ -6,18 +6,13 @@ class WinesController < ApplicationController
   # GET /wines
   def index 
     @wines = Wine.all
-    # @wines = current_user.wines
-    puts current_user
-
-    if @wines
-      render json: @wines.to_json(
-          :include => {
-            :varietal => {only: [:name]}, 
-            :origin => {only: [:region]},
-          })
-    else
-      render json: @wines.errors.full_messages
-    end
+    
+    render json: @wines.to_json(
+        :include => {
+          :varietal => {only: [:name]}, 
+          :origin => {only: [:region]},
+        })
+    
   end
 
   # GET /wines/1
